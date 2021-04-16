@@ -33,10 +33,10 @@ def loadPage():
 def predict():
     
     inputQuery1 = request.form['query1']
-    model = pickle.load(open("xgb.pkl", "rb"))
+    model = pickle.load(open("xgb_model.pkl", "rb"))
     
     
-    new_df = pd.read_csv("adfald.csv")
+    new_df = pd.read_csv("nid.csv")
     
     y_pred = model.predict(new_df)
     #probablity = model.predict_proba(new_df)[:,1]
