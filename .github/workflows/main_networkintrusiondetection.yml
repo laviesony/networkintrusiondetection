@@ -59,4 +59,4 @@ jobs:
         with:
           app-name: 'networkintrusiondetection'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_14627104c33d491db0dd5264b57b8da9 }}
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_49ab7e77e5ae4e78b41ea4324d978e19 }}
