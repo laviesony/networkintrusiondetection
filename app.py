@@ -24,6 +24,7 @@ def index():
 @app.route('/', methods=['POST'])
 def upload_files():
 	uploaded_file = request.files['file']
+	t0=time.time()
 	filename = secure_filename(uploaded_file.filename)
 	if filename != '':
 		file_ext = os.path.splitext(filename)[1]
@@ -31,7 +32,6 @@ def upload_files():
 		abort(400)
 
 	uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
-	t0=time.time()
 	print("yes")
 	model = pickle.load(open("xgb_model.pkl", "rb"))    
 	new_df = pd.read_csv('uploads/'+filename)
