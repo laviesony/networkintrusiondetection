@@ -6,13 +6,13 @@ from sklearn import metrics
 import pickle
 import xgboost as xgb
 import time
-import numpy as np
+#import numpy as np
 from flask import Flask, render_template, request, redirect, url_for, abort, \
     send_from_directory
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-app.config['UPLOAD_EXTENSIONS'] = ['.npy']
+app.config['UPLOAD_EXTENSIONS'] = ['.csv']
 app.config['UPLOAD_PATH'] = 'uploads'
 
 
@@ -35,9 +35,9 @@ def upload_files():
 	uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
 	print("yes")
 	model = pickle.load(open("xgb_model.pkl", "rb"))    
-	#new_df = pd.read_csv('uploads/'+filename)
-	X_test = np.load('X_test.npy')
-	y_pred = model.predict(X_test)
+	new_df = pd.read_csv('uploads/'+filename)
+	#X_test = np.load('X_test.npy')
+	y_pred = model.predict(new_df)
 
 	o1 = "The list contains all the predicted outputs"
 	o2 = ""
